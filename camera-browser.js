@@ -41,7 +41,7 @@ MeteoricCamera.getPicture = function (options, callback) {
   }
 
   desiredHeight = options.height || 640;
-  desiredWidth = options.width || 320;
+  desiredWidth = options.width || 480;
 
   // Canvas#toDataURL takes the quality as a 0-1 value, not a percentage
   MeteoricCamera.quality = (options.quality || 49) / 100;
