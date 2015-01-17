@@ -1,0 +1,57 @@
+<template name="viewfinder">
+  <div class="camera-overlay">
+    {{#if error}}
+      {{#if permissionDeniedError}}
+        {{> permissionDenied}}
+      {{else}}
+        {{#if browserNotSupportedError}}
+          {{> error message="Sorry, this browser is currently not supported for camera functionality."}}
+        {{else}}
+          {{> error message="There was an error accessing the camera."}}
+        {{/if}}
+      {{/if}}
+    {{else}}
+
+      {{#if photo}}
+        <div class="camera-preview">
+          <img src="{{photo}}">
+        </div>
+        <div class="camera-actions">
+          <div class="row">
+            <div class="col text-left">
+              <button class="button button-clear button-light" data-action="retake-photo">Retake</button>
+            </div>
+            <div class="col text-center"></div>
+            <div class="col text-right">
+              <button class="button button-outline button-energized" data-action="use-photo">Use Photo</button>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        <video class="{{#if waitingForPermission}}hide{{/if}}"></video>
+
+        {{#if waitingForPermission}}
+          <div class="camera-message">
+            <p>Waiting for camera permissions...</p>
+          </div>
+        {{/if}}
+
+        <div class="camera-actions">
+          <div class="row">
+            <div class="col text-left">
+              <button class="button button-clear button-light" data-action="cancel">Cancel</button>
+            </div>
+            <div class="col text-center">
+              {{#unless waitingForPermission}}
+                <button class="button button-shutter" data-action="take-photo"></button>
+              {{/unless}}
+            </div>
+            <div class="col text-right"></div>
+          </div>
+        </div>
+
+        <canvas style="visibility: hidden"></canvas>
+      {{/if}}
+    {{/if}}
+  </div>
+</template>
