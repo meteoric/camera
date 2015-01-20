@@ -19,7 +19,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'camera-browser.js',
     'camera.less',
-    'templates/error.html',
+    'templates/errorMessage.html',
     'templates/permissionDenied.html',
     'templates/viewfinder.html',
     'templates/viewfinder.js'

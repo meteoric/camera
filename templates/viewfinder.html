@@ -5,9 +5,9 @@
         {{> permissionDenied}}
       {{else}}
         {{#if browserNotSupportedError}}
-          {{> error message="Sorry, this browser is currently not supported for camera functionality."}}
+          {{> errorMessage message="Sorry, this browser is currently not supported for camera functionality."}}
         {{else}}
-          {{> error message="There was an error accessing the camera."}}
+          {{> errorMessage message="There was an error accessing the camera."}}
         {{/if}}
       {{/if}}
     {{else}}

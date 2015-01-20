@@ -1,9 +1,7 @@
-Template.viewfinder.rendered = function() {
-  var template = this;
-
+MeteoricCamera.initViewfinder = function () {
   MeteoricCamera.waitingForPermission.set(true);
 
-  var video = template.find('video');
+  var video = this.find('video');
 
   // stream webcam video to the <video> element
   var success = function(newStream) {
@@ -59,6 +57,10 @@ Template.viewfinder.rendered = function() {
   }, false);
 };
 
+Template.viewfinder.rendered = function() {
+  MeteoricCamera.initViewfinder.call(this);
+};
+
 Template.viewfinder.events({
   'click [data-action="take-photo"]': function (event, template) {
     var video = template.find('video');
@@ -72,15 +74,18 @@ Template.viewfinder.events({
     MeteoricCamera.stream.stop();
   },
 
-  'click [data-action="use-photo"]': function () {
+  'click [data-action="use-photo"]': function (event, template) {
     MeteoricCamera.closeAndCallback(null, MeteoricCamera.photo.get());
   },
 
-  'click [data-action="retake-photo"]': function () {
+  'click [data-action="retake-photo"]': function (event, template) {
     MeteoricCamera.photo.set(null);
+    Meteor.setTimeout(function () {
+      MeteoricCamera.initViewfinder.call(template);
+    }, 100);
   },
 
-  'click [data-action="cancel"]': function () {
+  'click [data-action="cancel"]': function (event, template) {
     if (MeteoricCamera.permissionDeniedError()) {
       MeteoricCamera.closeAndCallback(new Meteor.Error('permissionDenied', 'Camera permissions were denied.'));
     } else if (MeteoricCamera.browserNotSupportedError()) {
