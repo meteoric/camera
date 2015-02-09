@@ -1,7 +1,7 @@
 Package.describe({
   name: 'meteoric:camera',
   summary: 'Camera with one function call on desktop and mobile.',
-  version: '1.0.1',
+  version: '1.0.2',
   git: 'https://github.com/meteoric/camera'
 });
 
