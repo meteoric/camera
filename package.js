@@ -11,7 +11,7 @@ Cordova.depends({
 
 Package.onUse(function(api) {
   api.export('MeteoricCamera');
-  api.use(['templating', 'session', 'ui', 'blaze', 'less', 'reactive-var']);
+  api.use(['templating', 'session', 'ui', 'blaze', 'less', 'reactive-var', 'meteoric:ionic@0.1.13']);
   api.versionsFrom('METEOR@1.0');
 
   api.addFiles('camera.js');
