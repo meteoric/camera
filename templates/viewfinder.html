@@ -1,5 +1,5 @@
 <template name="viewfinder">
-  <div class="camera-overlay">
+  {{#ionModal title="Take Photo"}}
     {{#if error}}
       {{#if permissionDeniedError}}
         {{> permissionDenied}}
@@ -28,7 +28,7 @@
           </div>
         </div>
       {{else}}
-        <video class="{{#if waitingForPermission}}hide{{/if}}"></video>
+        <video class="{{#if waitingForPermission}}hide{{/if}} camera-video"></video>
 
         {{#if waitingForPermission}}
           <div class="camera-message">
@@ -53,5 +53,5 @@
         <canvas style="visibility: hidden"></canvas>
       {{/if}}
     {{/if}}
-  </div>
+  {{/ionModal}}
 </template>

@@ -57,15 +57,17 @@ MeteoricCamera.getPicture = function (options, callback) {
   MeteoricCamera.canvasWidth = Math.round(MeteoricCamera.canvasWidth);
   MeteoricCamera.canvasHeight = Math.round(MeteoricCamera.canvasHeight);
 
-  var view;
+
+  IonModal.open("viewfinder");
+  // var view;
 
   MeteoricCamera.closeAndCallback = function () {
     var originalArgs = arguments;
-    UI.remove(view);
+    IonModal.close();
     MeteoricCamera.photo.set(null);
     callback.apply(null, originalArgs);
   };
 
-  view = UI.renderWithData(Template.viewfinder);
-  UI.insert(view, document.body);
+  // view = UI.renderWithData(Template.viewfinder);
+  // UI.insert(view, document.body);
 };
